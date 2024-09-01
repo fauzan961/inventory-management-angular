@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Sell Product</h2>
+<mat-dialog-content class="dialog-content">
+    <p class="product-info"><strong>Product:</strong> {{ product.name }}</p>
+    <p class="product-info"><strong>Quantity:</strong> {{ product.quantity }}</p>
+    <mat-form-field appearance="fill" class="form-field">
+        <mat-label>{{ placeholderMessage}}</mat-label>
+        <input min="1" type="number" matInput [(ngModel)]="quantitySold" />
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="dialog-actions">
+    <button mat-button class="cancel-button" (click)="onNoClick()">Cancel</button>
+    <button [disabled]="confirmDisabled()" mat-button class="confirm-button" (click)="onConfirm()">Confirm</button>
+</mat-dialog-actions>

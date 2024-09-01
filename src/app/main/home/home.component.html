@@ -1,0 +1,34 @@
+<div *ngIf="products && products.length; else noProducts" class="product-list">
+    <div *ngFor="let product of products | paginate: {itemsPerPage: pageSize, currentPage: currentPage}"
+        class="product-item">
+        <div class="product-details">
+            <div class="details-content">
+                <div class="product-info">
+                    <strong>Product:</strong> {{ product.name }}<br>
+                    <strong>Quantity:</strong> {{ product.quantity }}<br>
+                    <strong>Actual Price:</strong> Rs {{ product.actual_price | number: '1.0-2' }}<br>
+                    <strong>Offer Price:</strong> Rs {{ product.offer_price | number: '1.0-2' }}<br>
+                </div>
+                <div>
+                    <button (click)="editProduct(product)" class="btn-edit">Edit</button>
+                    <button (click)="updateProductQty(product, 'sell')" class="btn-sell">Sell</button>
+                    <button (click)="updateProductQty(product, 'add')" class="btn-add">Add Qty</button>
+                    <button (click)="deleteProduct(product.id)" class="btn-del"> <mat-icon
+                            class="trash-icon">delete</mat-icon></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+
+    </div>
+</div>
+
+<ng-template #noProducts>
+    <p class="no-products-message">No products available.</p>
+</ng-template>
+
+<div class="add-product">
+    <button (click)="addProduct()" class="btn-add-product">Add Product</button>
+</div>

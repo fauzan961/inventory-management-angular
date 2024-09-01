@@ -1,0 +1,126 @@
+/* Basic styling for the product list */
+.product-list {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.product-item {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-details {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.details-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-details strong {
+    color: #555;
+    display: inline-block;
+    padding-bottom: 10px;
+    /* Adjust width as needed */
+}
+
+.no-products-message {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+}
+
+.add-product {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-add-product {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-add-product:hover {
+    background-color: #0056b3;
+}
+
+.btn-sell {
+    margin-right: 8px;
+    padding: 8px 15px;
+    font-size: 14px;
+    color: white;
+    background-color: #e74c3c;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-sell:hover {
+    background-color: #c0392b;
+}
+
+.btn-add {
+    padding: 8px 15px;
+    margin-right: 8px;
+    font-size: 14px;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-add:hover {
+    background-color: #388E3C;
+}
+
+.btn-edit {
+    padding: 8px 15px;
+    margin-right: 8px;
+    font-size: 14px;
+    color: white;
+    background-color: #2196F3;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-edit:hover {
+    background-color: #1976D2;
+}
+
+.btn-del {
+    padding: 8px 15px;
+    font-size: 14px;
+    color: white;
+    background-color: #e74c3c;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-del:hover {
+    background-color: #c0392b;
+}
+
+.trash-icon {
+    font-size: 18px;
+    height: 15px;
+}

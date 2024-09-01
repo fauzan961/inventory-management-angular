@@ -1,0 +1,26 @@
+<div class="add-product-form">
+    <h2>Add New Product</h2>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input id="name" formControlName="name" type="text" />
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input id="quantity" formControlName="quantity" type="number" />
+        </div>
+
+        <div class="form-group">
+            <label for="actual_price">Actual Price:</label>
+            <input id="actual_price" formControlName="actual_price" type="number" />
+        </div>
+
+        <div class="form-group">
+            <label for="offer_price">Offer Price:</label>
+            <input id="offer_price" formControlName="offer_price" type="number" />
+        </div>
+
+        <button [disabled]="formDisabled()" type="submit">Add Product</button>
+    </form>
+</div>
