@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/api.service';
 import { catchError, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-add-product',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class AddProductComponent implements OnInit {
 
   constructor(private apiService: ApiService,
-    private router: Router
+    private router: Router, private cookieService: CookieService
   ) { }
 
   productForm = new FormGroup({
@@ -28,6 +29,10 @@ export class AddProductComponent implements OnInit {
   }
 
   ngOnInit() {
+    const mrToken = this.cookieService.get('mr-token')
+    if (!mrToken) {
+      this.router.navigate(['/login'])
+    }
   }
 
   onSubmit() {

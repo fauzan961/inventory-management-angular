@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { SellProductDialogComponent } from './sell-product-dialog/sell-product-dialog.component';
 import { EditProductDialogComponent } from './edit-product-dialog/edit-product-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { CookieService } from 'ngx-cookie-service';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class HomeComponent implements OnInit {
 
   constructor(private apiService: ApiService, private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog, private cookieService: CookieService
   ) { }
 
   products: any = []
@@ -32,11 +34,7 @@ export class HomeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        this.apiService.getProducts().subscribe(
-          (result: any) => {
-            this.products = result
-          }
-        )
+        this.getProducts()
       }
     });
   }
@@ -49,35 +47,56 @@ export class HomeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        this.apiService.getProducts().subscribe(
-          (result: any) => {
-            this.products = result
-          }
-        )
+        this.getProducts()
       }
     });
   }
 
   deleteProduct(product_id: number) {
-    this.apiService.deleteProduct(product_id).subscribe(
+    this.apiService.deleteProduct(product_id).pipe(
+      catchError(error => {
+        if (error.status === 401) {
+          this.router.navigate(['/login'])
+        }
+        else {
+          this.router.navigate(['/home'])
+        }
+        return of(null);
+      })
+    ).subscribe(
       (result: any) => {
-        this.apiService.getProducts().subscribe(
-          (result: any) => {
-            this.products = result
-            this.currentPage = 1
-          }
-        )
+        this.getProducts()
+        this.currentPage = 1
       }
     )
   }
 
 
   ngOnInit() {
-    this.apiService.getProducts().subscribe(
+    const mrToken = this.cookieService.get('mr-token')
+    if (!mrToken) {
+      this.router.navigate(['/login'])
+    }
+    else {
+      this.getProducts()
+    }
+  }
+
+  getProducts() {
+    this.apiService.getProducts().pipe(
+      catchError(error => {
+        if (error.status === 401) {
+          this.router.navigate(['/login'])
+        }
+        else {
+          this.router.navigate(['/home'])
+        }
+        return of(null);
+      })
+    ).subscribe(
       (result: any) => {
         this.products = result
       }
     )
   }
-
 }

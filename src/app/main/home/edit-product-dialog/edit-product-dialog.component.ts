@@ -30,7 +30,6 @@ export class EditProductDialogComponent {
     if (this.editProductForm.valid) {
       this.apiService.editProduct(this.editProductForm.value, this.product.id).pipe(
         catchError(error => {
-          console.log(error)
           return of(null);
         })
       ).subscribe(

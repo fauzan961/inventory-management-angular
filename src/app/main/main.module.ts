@@ -13,14 +13,19 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { SellProductDialogComponent } from './home/sell-product-dialog/sell-product-dialog.component';
-import { EditProductDialogComponent } from './home/edit-product-dialog/edit-product-dialog.component'; // Import FormsModule here
+import { EditProductDialogComponent } from './home/edit-product-dialog/edit-product-dialog.component';
+import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'add-product', component: AddProductComponent }
+  { path: 'add-product', component: AddProductComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '404', component: PageNotFoundComponent },
+  { path: '**', redirectTo: '/404' }
 ];
 
 
@@ -30,7 +35,8 @@ const routes: Routes = [
     HomeComponent,
     AddProductComponent,
     SellProductDialogComponent,
-    EditProductDialogComponent
+    EditProductDialogComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
